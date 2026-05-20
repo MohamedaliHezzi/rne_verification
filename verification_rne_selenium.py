@@ -244,31 +244,17 @@ try:
     df = df_unique.rename(columns={"mf_original":"mf_original","nom":"prenom_nom"})
 
 except Exception as e:
-    print(f"  SQL Server inaccessible : {str(e)[:80]}")
-    print("  Chargement depuis la liste locale (fallback)...")
-    MF_FALLBACK = [
-        # ── 20 MF réels confirmés (tous TROUVÉS) ──────────────────
-        "0815096F","1897866K","0963496T","1746811F","1921334C",
-        "1450018X","1324094E","1809646J","1643534J","1239763Q",
-        "1893763L","1134465E","0513141P","1587871G","1565214H",
-        "0703742S","0983540Q","0684794X","1438949H","1570338D",
-        # ── 20 MF réels supplémentaires ───────────────────────────
-        "1863126V","1605752E","0347442W","1093630W","1893953Q",
-        "1513586Z","1933567H","0504293E","1889041C","1926500V",
-        "1023842T","1164017Z","1814120Q","1246813F","0731456K",
-        "1582034N","0629871M","1304567P","0876543B","1457892D",
-        # ── 20 MF fictifs générés (attendus INVALIDE_FORMAT) ──────
-        "3678638Y","9164991E","9767312N","1348050X","1865901G",
-        "2970754W","7961578L","5006492U","9186400T","3650391C",
-        "6183033Q","5951651Z","8713396C","9289908Q","6761929Y",
-        "5813037R","2993318E","4896008T","1262492H","2968239Z",
-    ]
-    df = pd.DataFrame([
-        {"source_table":"local","police":f"LOCAL_{i+1:04d}",
-         "mf_original":mf,"prenom_nom":""}
-        for i,mf in enumerate(MF_FALLBACK)
-    ])
-    print(f"  {len(df)} MF charges (mode fallback)")
+    print(f"  ❌ Erreur SQL Server : {str(e)[:100]}")
+    print("\n  Configuration actuelle :")
+    print(f"    • Serveur : {SERVER}")
+    print(f"    • Base : {BASE}")
+    print("\n  Vérifications requises :")
+    print(f"    ✓ SQL Server est en ligne ?")
+    print(f"    ✓ Authentification Windows activée ?")
+    print(f"    ✓ Driver ODBC 17 for SQL Server installé ?")
+    print(f"    ✓ Vous avez accès à cette base ?")
+    print(f"\n  >> Relancez après correction")
+    exit(1)
 
 print(f"\n  {len(df)} MF a verifier sur le RNE")
 

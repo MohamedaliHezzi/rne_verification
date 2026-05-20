@@ -19,7 +19,7 @@ load_dotenv()
 # ── CONFIGURATION ──────────────────────────────────────────────
 SERVER       = "DALI-HEZZI\\LOCALSQL"
 BASE         = "maghrebia_dq"
-TIMEOUT      = 25
+TIMEOUT      = 5
 RNE_URL      = "https://www.registre-entreprises.tn/rne-public/#/extrait-registre"
 LOGIN_URL    = "https://www.registre-entreprises.tn/rne-public/#/login"
 RNE_EMAIL    = os.getenv("RNE_EMAIL")

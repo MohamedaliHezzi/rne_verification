@@ -244,16 +244,15 @@ try:
     df = df_unique.rename(columns={"mf_original":"mf_original","nom":"prenom_nom"})
 
 except Exception as e:
-    print(f"  ❌ Erreur SQL Server : {str(e)[:100]}")
-    print("\n  Configuration actuelle :")
+    print(f"  ❌ Erreur SQL Server : {str(e)[:80]}")
+    print(f"\n  Configuration :")
     print(f"    • Serveur : {SERVER}")
     print(f"    • Base : {BASE}")
-    print("\n  Vérifications requises :")
-    print(f"    ✓ SQL Server est en ligne ?")
-    print(f"    ✓ Authentification Windows activée ?")
-    print(f"    ✓ Driver ODBC 17 for SQL Server installé ?")
-    print(f"    ✓ Vous avez accès à cette base ?")
-    print(f"\n  >> Relancez après correction")
+    print(f"\n  Vérifications requises :")
+    print(f"    ✓ SQL Server en ligne ?")
+    print(f"    ✓ Authentification Windows OK ?")
+    print(f"    ✓ Accès à la base de données ?")
+    print(f"\n  >> Correction requise avant de relancer")
     exit(1)
 
 print(f"\n  {len(df)} MF a verifier sur le RNE")
